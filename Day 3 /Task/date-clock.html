@@ -89,7 +89,7 @@
     const currentDate = new Date();
     document.getElementById('currentDate').textContent = currentDate.toLocaleString();
 
-    // ✅ Date Object:
+    // Date Object:
     // Represents a specific point in time. Can format and manipulate date/time easily.
 
     // 2. Real-time Clock
@@ -99,7 +99,7 @@
       liveClock.textContent = now.toLocaleTimeString();
     }, 1000);
 
-    // ✅ setInterval():
+    // setInterval():
     // Runs a function every N milliseconds (1000 ms = 1 second)
 
     // Stop Clock Button
@@ -108,7 +108,7 @@
       liveClock.textContent += ' (Stopped)';
     });
 
-    // ✅ clearInterval():
+    // clearInterval():
     // Stops the repeated execution set by setInterval()
 
     // 3. Timer that counts up to 10
@@ -123,7 +123,7 @@
       }
     }, 1000);
 
-    // ✅ Timer Logic:
+    // Timer Logic:
     // Use setInterval with a counter + condition to stop at a limit
 
     // 4. Compare two dates
@@ -139,7 +139,7 @@
       comparisonResult.textContent = 'Both dates are the same';
     }
 
-    // ✅ Comparing Dates:
+    // Comparing Dates:
     // Use <, >, === — Date objects are compared by their numeric timestamp
   </script>
 
