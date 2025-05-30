@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date & Clock</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      padding: 30px;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .section {
+      background-color: #fff;
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      font-size: 18px;
+    }
+
+    .output {
+      font-size: 22px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Date & Timers</h1>
+
+  <!-- 1. Current Date & Time -->
+  <div class="section">
+    <span class="label">Current Date & Time:</span>
+    <div class="output" id="currentDate"></div>
+  </div>
+
+  <!-- 2. Real-time Clock -->
+  <div class="section">
+    <span class="label">Live Clock:</span>
+    <div class="output" id="liveClock">--:--:--</div>
+    <button id="stopClockBtn">Stop Clock</button>
+  </div>
+
+  <!-- 3. Count-up Timer -->
+  <div class="section">
+    <span class="label">Count-Up Timer (Stops at 10):</span>
+    <div class="output" id="timerOutput">0</div>
+  </div>
+
+  <!-- 4. Date Comparison -->
+  <div class="section">
+    <span class="label">Date Comparison:</span>
+    <div class="output" id="dateComparison"></div>
+  </div>
+
+  <script>
+    // 1. Display current date and time
+    const currentDate = new Date();
+    document.getElementById('currentDate').textContent = currentDate.toLocaleString();
+
+    // ✅ Date Object:
+    // Represents a specific point in time. Can format and manipulate date/time easily.
+
+    // 2. Real-time Clock
+    const liveClock = document.getElementById('liveClock');
+    const clockInterval = setInterval(() => {
+      const now = new Date();
+      liveClock.textContent = now.toLocaleTimeString();
+    }, 1000);
+
+    // ✅ setInterval():
+    // Runs a function every N milliseconds (1000 ms = 1 second)
+
+    // Stop Clock Button
+    document.getElementById('stopClockBtn').addEventListener('click', () => {
+      clearInterval(clockInterval);
+      liveClock.textContent += ' (Stopped)';
+    });
+
+    // ✅ clearInterval():
+    // Stops the repeated execution set by setInterval()
+
+    // 3. Timer that counts up to 10
+    const timerOutput = document.getElementById('timerOutput');
+    let count = 0;
+    const timerInterval = setInterval(() => {
+      count++;
+      timerOutput.textContent = count;
+      if (count >= 10) {
+        clearInterval(timerInterval);
+        timerOutput.textContent += ' (Done)';
+      }
+    }, 1000);
+
+    // ✅ Timer Logic:
+    // Use setInterval with a counter + condition to stop at a limit
+
+    // 4. Compare two dates
+    const date1 = new Date('2025-01-01');
+    const date2 = new Date('2025-05-30');
+    const comparisonResult = document.getElementById('dateComparison');
+
+    if (date1 < date2) {
+      comparisonResult.textContent = 'Jan 1, 2025 is earlier than May 30, 2025';
+    } else if (date1 > date2) {
+      comparisonResult.textContent = 'May 30, 2025 is earlier than Jan 1, 2025';
+    } else {
+      comparisonResult.textContent = 'Both dates are the same';
+    }
+
+    // ✅ Comparing Dates:
+    // Use <, >, === — Date objects are compared by their numeric timestamp
+  </script>
+
+</body>
+</html>

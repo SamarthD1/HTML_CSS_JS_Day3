@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Traversal</title>
+  <style>
+    .highlight {
+      background-color: lightgreen;
+    }
+    .item {
+      border: 1px solid #333;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Nested Div Structure -->
+  <div class="outer item">
+    Outer Div
+    <div class="middle item">
+      Middle Div
+      <div class="inner item">
+        Inner Div
+        <button class="child-btn">Click Me</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 2. parentElement
+    const button = document.querySelector('.child-btn');
+    console.log("Parent of .child-btn:", button.parentElement);
+
+    // 3. .children
+    const middleDiv = document.querySelector('.middle');
+    console.log(".children of .middle:", middleDiv.children);
+
+    // 4. .closest()
+    const closestOuter = button.closest('.outer');
+    console.log("Closest .outer from .child-btn:", closestOuter);
+
+    // 5. Toggle class on parent when clicking child
+    button.addEventListener('click', () => {
+      const item = button.closest('.item');
+      item.classList.toggle('highlight');
+    });
+  </script>
+
+</body>
+</html>
